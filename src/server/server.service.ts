@@ -25,6 +25,11 @@ export class ServerService {
     return server;
   }
 
+  async getServerPrefix(serverId: string): Promise<string> {
+    const server = await this.getServer(serverId);
+    return server.prefix ?? '!';
+  }
+
   async setServerPrefix(serverId: string, prefix: string): Promise<string> {
     if (
       this.configService.adminPrefix.trim().toLowerCase() ===
