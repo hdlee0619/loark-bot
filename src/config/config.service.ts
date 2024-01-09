@@ -7,6 +7,8 @@ export class ConfigService {
   public readonly discordToken: string;
   public readonly discordClientId: string;
 
+  public readonly mongoURL: string;
+
   constructor() {
     config({
       path: path.resolve(
@@ -18,5 +20,6 @@ export class ConfigService {
 
     this.discordToken = process.env.DISCORD_API_TOKEN;
     this.discordClientId = process.env.DISCORD_CLIENT_ID;
+    this.mongoURL = process.env.MONGO_URL;
   }
 }
