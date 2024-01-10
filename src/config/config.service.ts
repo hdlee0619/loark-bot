@@ -9,6 +9,9 @@ export class ConfigService {
 
   public readonly mongoURL: string;
 
+  public readonly adminPrefix: string;
+  public readonly defaultPrefix: string;
+
   constructor() {
     config({
       path: path.resolve(
@@ -21,5 +24,7 @@ export class ConfigService {
     this.discordToken = process.env.DISCORD_API_TOKEN;
     this.discordClientId = process.env.DISCORD_CLIENT_ID;
     this.mongoURL = process.env.MONGO_URL;
+    this.adminPrefix = 'admin';
+    this.defaultPrefix = '!';
   }
 }
