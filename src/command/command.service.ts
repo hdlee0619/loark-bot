@@ -5,6 +5,7 @@ import { ICommandHandler } from '@/command/commandHandler.interface';
 import { ServerService } from '@/server/server.service';
 import { ConfigService } from '@/config/config.service';
 import { SetPrefixHandler } from '@/command/admin/set-prefix/set-prefix.handler';
+import { PingHandler } from '@/command/ping/ping.handler';
 
 @Injectable()
 export class CommandService {
@@ -14,9 +15,13 @@ export class CommandService {
     private readonly serverService: ServerService,
     private readonly configService: ConfigService,
 
+    // command for admin
     private readonly setPrefixHandler: SetPrefixHandler,
+
+    // command for user
+    private readonly pingHandler: PingHandler,
   ) {
-    this.commandHandlers = [setPrefixHandler];
+    this.commandHandlers = [setPrefixHandler, pingHandler];
   }
 
   register(client: Client) {
@@ -31,6 +36,7 @@ export class CommandService {
 
     client.on('messageCreate', async (message) => {
       try {
+        // console.log(message);
         await this.messageHandler(message);
       } catch (error) {
         Logger.error(error.message, error.stack);
@@ -47,9 +53,9 @@ export class CommandService {
     if (message.author.bot) return;
     const { content } = message;
 
-    // Test for custom prefix
+    // Check for custom prefix
     const serverPrefix = await this.serverService.getServerPrefix(
-      message.guild.id,
+      message.guildId,
     );
     const prefixRegexp = new RegExp(
       `^(${this.escapePrefixForRegexp(
@@ -57,11 +63,14 @@ export class CommandService {
       )}|${this.escapePrefixForRegexp(serverPrefix)})`,
       'i',
     );
+
     if (!prefixRegexp.test(message.content)) return;
+
     const serverPrefixRegexp = new RegExp(
       `^${this.escapePrefixForRegexp(serverPrefix)}`,
       'i',
     );
+
     if (serverPrefixRegexp.test(message.content)) {
       message.content = message.content.replace(serverPrefixRegexp, '').trim();
     }
@@ -85,6 +94,7 @@ export class CommandService {
 
   private escapePrefixForRegexp(serverPrefix: string): string {
     const char = serverPrefix[0];
+
     if ('./+\\*!?)([]{}^$'.split('').includes(char)) return `\\${serverPrefix}`;
     return serverPrefix;
   }
