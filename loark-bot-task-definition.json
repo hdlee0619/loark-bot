@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:722692031100:task-definition/loark-bot:1",
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:722692031100:task-definition/loark-bot:2",
     "containerDefinitions": [
         {
             "name": "loark-bot",
-            "image": "722692031100.dkr.ecr.ap-northeast-2.amazonaws.com/loark-bot",
+            "image": "722692031100.dkr.ecr.ap-northeast-2.amazonaws.com/loark-bot:6851a49a94642f17829f4955bdd372d8139d44d5",
             "cpu": 512,
             "memory": 1024,
             "portMappings": [
@@ -17,10 +17,8 @@
             ],
             "essential": true,
             "environment": [],
-            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
-            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -28,8 +26,7 @@
                     "awslogs-group": "/ecs/loark-bot",
                     "awslogs-region": "ap-northeast-2",
                     "awslogs-stream-prefix": "ecs"
-                },
-                "secretOptions": []
+                }
             }
         }
     ],
@@ -37,7 +34,7 @@
     "taskRoleArn": "arn:aws:iam::722692031100:role/nestjs-loark-bot",
     "executionRoleArn": "arn:aws:iam::722692031100:role/nestjs-loark-bot",
     "networkMode": "awsvpc",
-    "revision": 1,
+    "revision": 2,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -83,7 +80,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-01-12T01:13:19.496Z",
-    "registeredBy": "arn:aws:iam::722692031100:root",
+    "registeredAt": "2024-01-12T02:36:55.089Z",
+    "registeredBy": "arn:aws:iam::722692031100:user/nestjs-loark-bot",
     "tags": []
 }
