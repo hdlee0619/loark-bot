@@ -1,14 +1,13 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:722692031100:task-definition/loark-bot:2",
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:722692031100:task-definition/loark-bot-task:1",
     "containerDefinitions": [
         {
-            "name": "loark-bot",
-            "image": "722692031100.dkr.ecr.ap-northeast-2.amazonaws.com/loark-bot:6851a49a94642f17829f4955bdd372d8139d44d5",
-            "cpu": 512,
-            "memory": 1024,
+            "name": "loark-bot-container",
+            "image": "722692031100.dkr.ecr.ap-northeast-2.amazonaws.com/loark-bot:latest",
+            "cpu": 0,
             "portMappings": [
                 {
-                    "name": "loark-bot-80-tcp",
+                    "name": "loark-bot-container-80-tcp",
                     "containerPort": 80,
                     "hostPort": 80,
                     "protocol": "tcp",
@@ -17,24 +16,28 @@
             ],
             "essential": true,
             "environment": [],
+            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
+            "workingDirectory": "/app",
+            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/loark-bot",
+                    "awslogs-group": "/ecs/loark-bot-task",
                     "awslogs-region": "ap-northeast-2",
                     "awslogs-stream-prefix": "ecs"
-                }
+                },
+                "secretOptions": []
             }
         }
     ],
-    "family": "loark-bot",
+    "family": "loark-bot-task",
     "taskRoleArn": "arn:aws:iam::722692031100:role/nestjs-loark-bot",
     "executionRoleArn": "arn:aws:iam::722692031100:role/nestjs-loark-bot",
     "networkMode": "awsvpc",
-    "revision": 2,
+    "revision": 1,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -49,6 +52,9 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
@@ -74,13 +80,13 @@
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "cpu": "512",
-    "memory": "1024",
+    "cpu": "1024",
+    "memory": "3072",
     "runtimePlatform": {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-01-12T02:36:55.089Z",
-    "registeredBy": "arn:aws:iam::722692031100:user/nestjs-loark-bot",
+    "registeredAt": "2024-01-12T08:12:57.426Z",
+    "registeredBy": "arn:aws:iam::722692031100:root",
     "tags": []
 }
