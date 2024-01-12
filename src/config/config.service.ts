@@ -7,6 +7,7 @@ export class ConfigService {
   public readonly discordToken: string;
   public readonly discordClientId: string;
 
+  public readonly port: number;
   public readonly mongoURL: string;
 
   public readonly adminPrefix: string;
@@ -23,6 +24,7 @@ export class ConfigService {
 
     this.discordToken = process.env.DISCORD_API_TOKEN;
     this.discordClientId = process.env.DISCORD_CLIENT_ID;
+    this.port = parseInt(process.env.PORT);
     this.mongoURL = process.env.MONGO_URL;
     this.adminPrefix = 'admin';
     this.defaultPrefix = '!';
