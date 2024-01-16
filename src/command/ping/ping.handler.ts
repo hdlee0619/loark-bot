@@ -13,7 +13,7 @@ export class PingHandler implements ICommandHandler {
   }
 
   async execute(message: Message): Promise<void> {
-    const embed = new EmbedBuilder().setColor('Green').setDescription('pong!');
+    const embed = new EmbedBuilder().setColor('Green').setDescription('pong!!');
     await message.reply({ embeds: [embed] });
   }
 }
