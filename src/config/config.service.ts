@@ -14,13 +14,11 @@ export class ConfigService {
   public readonly defaultPrefix: string;
 
   constructor() {
-    config({
-      path: path.resolve(
-        process.env.NODE_ENV === 'production'
-          ? '.env.production'
-          : '.env.development',
-      ),
-    });
+    if (process.env.NODE_ENV === 'development') {
+      config({
+        path: path.resolve('.env.development'),
+      });
+    }
 
     this.discordToken = process.env.DISCORD_API_TOKEN;
     this.discordClientId = process.env.DISCORD_CLIENT_ID;
