@@ -1,110 +1,110 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:722692031100:task-definition/loark-bot-task:16",
-  "containerDefinitions": [
-    {
-      "name": "loark-bot-container",
-      "image": "722692031100.dkr.ecr.ap-northeast-2.amazonaws.com/loark-bot-repository:latest",
-      "cpu": 0,
-      "memory": 1024,
-      "portMappings": [
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:722692031100:task-definition/loark-bot-task:19",
+    "containerDefinitions": [
         {
-          "name": "loark-bot-container-3000-tcp",
-          "containerPort": 3000,
-          "hostPort": 3000,
-          "protocol": "tcp",
-          "appProtocol": "http"
+            "name": "loark-bot-container",
+            "image": "722692031100.dkr.ecr.ap-northeast-2.amazonaws.com/loark-bot:latest",
+            "cpu": 0,
+            "memory": 1024,
+            "portMappings": [
+                {
+                    "name": "loark-bot-container-3000-tcp",
+                    "containerPort": 3000,
+                    "hostPort": 3000,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "secrets": [
+                {
+                    "name": "PORT",
+                    "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:722692031100:secret:loark-bot-production-secret-SzsDcm:PORT::"
+                },
+                {
+                    "name": "DISCORD_API_TOKEN",
+                    "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:722692031100:secret:loark-bot-production-secret-SzsDcm:DISCORD_API_TOKEN::"
+                },
+                {
+                    "name": "DISCORD_CLIENT_ID",
+                    "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:722692031100:secret:loark-bot-production-secret-SzsDcm:DISCORD_CLIENT_ID::"
+                },
+                {
+                    "name": "MONGO_URL",
+                    "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:722692031100:secret:loark-bot-production-secret-SzsDcm:MONGO_URL::"
+                }
+            ],
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/loark-bot-task",
+                    "awslogs-region": "ap-northeast-2",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            }
         }
-      ],
-      "essential": true,
-      "environment": [],
-      "environmentFiles": [],
-      "mountPoints": [],
-      "volumesFrom": [],
-      "secrets": [
+    ],
+    "family": "loark-bot-task",
+    "taskRoleArn": "arn:aws:iam::722692031100:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::722692031100:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 19,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
         {
-          "name": "PORT",
-          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:722692031100:secret:loark-bot-production-secret-SzsDcm:PORT::"
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
         },
         {
-          "name": "DISCORD_API_TOKEN",
-          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:722692031100:secret:loark-bot-production-secret-SzsDcm:DISCORD_API_TOKEN::"
+            "name": "ecs.capability.execution-role-awslogs"
         },
         {
-          "name": "DISCORD_CLIENT_ID",
-          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:722692031100:secret:loark-bot-production-secret-SzsDcm:DISCORD_CLIENT_ID::"
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
         },
         {
-          "name": "MONGO_URL",
-          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:722692031100:secret:loark-bot-production-secret-SzsDcm:MONGO_URL::"
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "ecs.capability.secrets.asm.environment-variables"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
         }
-      ],
-      "ulimits": [],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-create-group": "true",
-          "awslogs-group": "/ecs/loark-bot-task",
-          "awslogs-region": "ap-northeast-2",
-          "awslogs-stream-prefix": "ecs"
-        },
-        "secretOptions": []
-      }
-    }
-  ],
-  "family": "loark-bot-task",
-  "taskRoleArn": "arn:aws:iam::722692031100:role/ecsTaskExecutionRole",
-  "executionRoleArn": "arn:aws:iam::722692031100:role/ecsTaskExecutionRole",
-  "networkMode": "awsvpc",
-  "revision": 16,
-  "volumes": [],
-  "status": "ACTIVE",
-  "requiresAttributes": [
-    {
-      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "512",
+    "memory": "1024",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
     },
-    {
-      "name": "ecs.capability.execution-role-awslogs"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-    },
-    {
-      "name": "ecs.capability.secrets.asm.environment-variables"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.task-iam-role"
-    },
-    {
-      "name": "ecs.capability.execution-role-ecr-pull"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-    },
-    {
-      "name": "ecs.capability.task-eni"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
-    }
-  ],
-  "placementConstraints": [],
-  "compatibilities": [
-    "EC2",
-    "FARGATE"
-  ],
-  "requiresCompatibilities": [
-    "FARGATE"
-  ],
-  "cpu": "512",
-  "memory": "1024",
-  "runtimePlatform": {
-    "cpuArchitecture": "ARM64",
-    "operatingSystemFamily": "LINUX"
-  },
-  "registeredAt": "2024-01-16T00:44:48.337Z",
-  "registeredBy": "arn:aws:iam::722692031100:root",
-  "tags": []
+    "registeredAt": "2024-01-16T01:38:23.491Z",
+    "registeredBy": "arn:aws:iam::722692031100:root",
+    "tags": []
 }
