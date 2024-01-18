@@ -6,6 +6,7 @@ import { ServerService } from '@/server/server.service';
 import { ConfigService } from '@/config/config.service';
 import { SetPrefixHandler } from '@/command/admin/set-prefix/set-prefix.handler';
 import { PingHandler } from '@/command/ping/ping.handler';
+import { SetChannelHandler } from '@/command/admin/set-channel/set-channel.handler';
 
 @Injectable()
 export class CommandService {
@@ -17,11 +18,18 @@ export class CommandService {
 
     // command for admin
     private readonly setPrefixHandler: SetPrefixHandler,
+    private readonly setChannelHandler: SetChannelHandler,
+    private readonly unsetChannelHandler: UnsetChannelHandler,
 
     // command for user
     private readonly pingHandler: PingHandler,
   ) {
     this.commandHandlers = [setPrefixHandler, pingHandler];
+    this.commandHandlers = [
+      setPrefixHandler,
+      setChannelHandler,
+      pingHandler,
+    ];
   }
 
   register(client: Client) {
@@ -36,7 +44,6 @@ export class CommandService {
 
     client.on('messageCreate', async (message) => {
       try {
-        // console.log(message);
         await this.messageHandler(message);
       } catch (error) {
         Logger.error(error.message, error.stack);
@@ -72,6 +79,14 @@ export class CommandService {
     );
 
     if (serverPrefixRegexp.test(message.content)) {
+      if (
+        !(await this.serverService.isChannelAllowed(
+          message.guild.id,
+          message.channel.id,
+        ))
+      ) {
+        return;
+      }
       message.content = message.content.replace(serverPrefixRegexp, '').trim();
     }
 
