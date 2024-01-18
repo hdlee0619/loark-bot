@@ -125,4 +125,27 @@ export class ServerService {
     return server;
   }
 
+  async unsetChannel(
+    message: Message,
+    guild: Guild,
+    requesterId: string,
+    channel: Channel,
+  ) {
+    await this.hasAdminRoleGuard(message, guild, requesterId);
+    const server = await this.getServer(guild.id);
+
+    if (!server.allowedChannels) {
+      server.allowedChannels = [];
+      await server.save();
+    } else {
+      if (server.allowedChannels.includes(channel.id)) {
+        server.allowedChannels = server.allowedChannels.filter(
+          (chanId) => chanId !== channel.id,
+        );
+        await server.save();
+      }
+    }
+
+    return server;
+  }
 }

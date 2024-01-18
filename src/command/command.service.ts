@@ -7,6 +7,7 @@ import { ConfigService } from '@/config/config.service';
 import { SetPrefixHandler } from '@/command/admin/set-prefix/set-prefix.handler';
 import { PingHandler } from '@/command/ping/ping.handler';
 import { SetChannelHandler } from '@/command/admin/set-channel/set-channel.handler';
+import { UnsetChannelHandler } from '@/command/admin/unset-channel/unset-channel.handdler';
 
 @Injectable()
 export class CommandService {
@@ -24,10 +25,10 @@ export class CommandService {
     // command for user
     private readonly pingHandler: PingHandler,
   ) {
-    this.commandHandlers = [setPrefixHandler, pingHandler];
     this.commandHandlers = [
       setPrefixHandler,
       setChannelHandler,
+      unsetChannelHandler,
       pingHandler,
     ];
   }
