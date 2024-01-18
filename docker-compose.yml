@@ -7,3 +7,5 @@ services:
       target: docker-test-stage
     env_file:
       - .env.development
+    volumes:
+      - .:/app
