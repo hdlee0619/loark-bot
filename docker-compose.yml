@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      target: docker-test-stage
+    env_file:
+      - .env.development
+    volumes:
+      - .:/app
