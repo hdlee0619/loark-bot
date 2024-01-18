@@ -61,13 +61,14 @@ export class ServerService {
   async administratorGuard(
     message: Message,
     requester: GuildMember,
-  ): Promise<void> {
+  ): Promise<boolean> {
     // TEST: 관리자 아닌 경우 테스트 필요
     if (!requester.permissions.has(PermissionsBitField.Flags.Administrator)) {
       await message.reply({ content: '관리자가 아닙니다.' });
-      throw new Error(
-        'Only user with administrator permissions can set the admin role',
-      );
+
+      return false;
+    } else {
+      return true;
     }
   }
 
@@ -75,18 +76,16 @@ export class ServerService {
     message: Message,
     guild: Guild,
     requesterId: string,
-  ): Promise<void> {
+  ): Promise<boolean> {
     const requester = guild.members.resolve(requesterId);
     const server = await this.getServer(guild.id);
 
     try {
-      await this.administratorGuard(message, requester);
+      return await this.administratorGuard(message, requester);
     } catch (error) {
       // TEST: requester.roles.cache.has(server.adminRole)에 대한 테스트 필요
       if (!requester.roles.cache.has(server.adminRole)) {
-        throw new Error(
-          `Only administrator or member with the role <@&${server.adminRole}> can use this method.`,
-        );
+        return false;
       }
     }
   }
