@@ -36,7 +36,7 @@ export class HelpHandler implements ICommandHandler {
         { name: '관리자 Prefix', value: `<${adminPrefix}>` },
         spacer,
         {
-          name: '사용자 prefix',
+          name: '현재 사용자 prefix',
           value: `<${prefix}>`,
         },
         spacer,
@@ -53,13 +53,18 @@ export class HelpHandler implements ICommandHandler {
       .setDescription('📝 로아크 봇 사용가능 명령어')
       .addFields([
         {
-          name: `${prefix}help`,
-          value: 'display this message',
+          name: `${prefix} help`,
+          value: '로아크 봇 사용가능 명령어 출력',
         },
         spacer,
         {
-          name: `${prefix}ping`,
+          name: `${prefix} ping`,
           value: 'reply `pong!`',
+        },
+        spacer,
+        {
+          name: `${prefix} status`,
+          value: '로아크 봇 상태 확인',
         },
       ]);
 

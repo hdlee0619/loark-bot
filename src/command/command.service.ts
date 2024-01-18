@@ -9,6 +9,7 @@ import { SetChannelHandler } from '@/command/admin/set-channel/set-channel.handl
 import { UnsetChannelHandler } from '@/command/admin/unset-channel/unset-channel.handdler';
 import { HelpHandler } from '@/command/help/help.handler';
 import { PingHandler } from '@/command/ping/ping.handler';
+import { StatusHandler } from '@/command/status/status.handler';
 
 @Injectable()
 export class CommandService {
@@ -22,6 +23,7 @@ export class CommandService {
     private readonly setPrefixHandler: SetPrefixHandler,
     private readonly setChannelHandler: SetChannelHandler,
     private readonly unsetChannelHandler: UnsetChannelHandler,
+    private readonly statusHandler: StatusHandler,
 
     // command for user
     private readonly helpHandler: HelpHandler,
@@ -31,6 +33,7 @@ export class CommandService {
       setPrefixHandler,
       setChannelHandler,
       unsetChannelHandler,
+      statusHandler,
       helpHandler,
       pingHandler,
     ];

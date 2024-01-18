@@ -6,6 +6,7 @@ import { ConfigModule } from '@/config/config.module';
 import { SetPrefixHandler } from '@/command/admin/set-prefix/set-prefix.handler';
 import { SetChannelHandler } from '@/command/admin/set-channel/set-channel.handler';
 import { UnsetChannelHandler } from '@/command/admin/unset-channel/unset-channel.handdler';
+import { StatusHandler } from '@/command/status/status.handler';
 import { HelpHandler } from '@/command/help/help.handler';
 import { PingHandler } from '@/command/ping/ping.handler';
 
@@ -16,6 +17,7 @@ import { PingHandler } from '@/command/ping/ping.handler';
     SetPrefixHandler,
     SetChannelHandler,
     UnsetChannelHandler,
+    StatusHandler,
     HelpHandler,
     PingHandler,
   ],
