@@ -46,6 +46,11 @@ export class HelpHandler implements ICommandHandler {
         },
         spacer,
         { name: '봇 채널 삭제', value: `${adminPrefix} unset channel` },
+        spacer,
+        {
+          name: '봇 관리자 역할 설정',
+          value: `${adminPrefix} set admin role @role`,
+        },
       ]);
 
     const userEmbed = new EmbedBuilder()
