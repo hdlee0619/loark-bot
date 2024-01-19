@@ -7,9 +7,10 @@ import { ConfigService } from '@/config/config.service';
 import { SetPrefixHandler } from '@/command/admin/set-prefix/set-prefix.handler';
 import { SetChannelHandler } from '@/command/admin/set-channel/set-channel.handler';
 import { UnsetChannelHandler } from '@/command/admin/unset-channel/unset-channel.handdler';
+import { SetAdminRoleHandler } from '@/command/admin/set-admin-role/set-admin-role.handler';
+import { StatusHandler } from '@/command/status/status.handler';
 import { HelpHandler } from '@/command/help/help.handler';
 import { PingHandler } from '@/command/ping/ping.handler';
-import { StatusHandler } from '@/command/status/status.handler';
 
 @Injectable()
 export class CommandService {
@@ -23,6 +24,7 @@ export class CommandService {
     private readonly setPrefixHandler: SetPrefixHandler,
     private readonly setChannelHandler: SetChannelHandler,
     private readonly unsetChannelHandler: UnsetChannelHandler,
+    private readonly setAdminRoleHandler: SetAdminRoleHandler,
     private readonly statusHandler: StatusHandler,
 
     // command for user
@@ -33,6 +35,7 @@ export class CommandService {
       setPrefixHandler,
       setChannelHandler,
       unsetChannelHandler,
+      setAdminRoleHandler,
       statusHandler,
       helpHandler,
       pingHandler,

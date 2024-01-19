@@ -9,6 +9,7 @@ import { UnsetChannelHandler } from '@/command/admin/unset-channel/unset-channel
 import { StatusHandler } from '@/command/status/status.handler';
 import { HelpHandler } from '@/command/help/help.handler';
 import { PingHandler } from '@/command/ping/ping.handler';
+import { SetAdminRoleHandler } from '@/command/admin/set-admin-role/set-admin-role.handler';
 
 @Module({
   imports: [ServerModule, ConfigModule],
@@ -17,6 +18,7 @@ import { PingHandler } from '@/command/ping/ping.handler';
     SetPrefixHandler,
     SetChannelHandler,
     UnsetChannelHandler,
+    SetAdminRoleHandler,
     StatusHandler,
     HelpHandler,
     PingHandler,

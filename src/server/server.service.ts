@@ -147,4 +147,18 @@ export class ServerService {
 
     return server;
   }
+
+  async setAdminRole(
+    message: Message,
+    guild: Guild,
+    requesterId: string,
+    role: string,
+  ): Promise<void> {
+    const requester = guild.members.resolve(requesterId);
+    await this.administratorGuard(message, requester);
+    const server = await this.getServer(guild.id);
+
+    server.adminRole = role;
+    await server.save();
+  }
 }
