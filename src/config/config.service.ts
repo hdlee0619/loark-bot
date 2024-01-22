@@ -13,6 +13,9 @@ export class ConfigService {
   public readonly adminPrefix: string;
   public readonly defaultPrefix: string;
 
+  public readonly lostArkUrl: string;
+  public readonly lostArkApiKey: string;
+
   constructor() {
     if (process.env.NODE_ENV === 'development') {
       config({
@@ -26,5 +29,7 @@ export class ConfigService {
     this.mongoURL = process.env.MONGO_URL;
     this.adminPrefix = 'admin';
     this.defaultPrefix = '!';
+    this.lostArkUrl = process.env.LOST_ARK_URL;
+    this.lostArkApiKey = process.env.LOST_ARK_API_KEY;
   }
 }

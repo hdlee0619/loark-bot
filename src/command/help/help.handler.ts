@@ -68,6 +68,11 @@ export class HelpHandler implements ICommandHandler {
         },
         spacer,
         {
+          name: `${prefix} 보유캐릭터 <캐릭터 닉네임>`,
+          value: '로스트아크 보유 캐릭터 아이템레벨 높은 순 6개 출력',
+        },
+        spacer,
+        {
           name: `${prefix} status`,
           value: '로아크 봇 상태 확인',
         },
