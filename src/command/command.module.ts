@@ -13,6 +13,7 @@ import { PingHandler } from '@/command/ping/ping.handler';
 import { SetAdminRoleHandler } from '@/command/admin/set-admin-role/set-admin-role.handler';
 import { ConfigService } from '@/config/config.service';
 import { CharactersHandler } from '@/command/lostark/character/characters.handler';
+import { NoticesHandler } from '@/command/lostark/news/notices.handler';
 
 const config = new ConfigService();
 
@@ -38,6 +39,7 @@ const config = new ConfigService();
     HelpHandler,
     PingHandler,
     CharactersHandler,
+    NoticesHandler,
   ],
   exports: [CommandService],
 })
