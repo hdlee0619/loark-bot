@@ -2,11 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { EmbedBuilder, Message } from 'discord.js';
 import { HttpService } from '@nestjs/axios';
 import { catchError, map } from 'rxjs';
+import dayjsConfig from '@/utils/dayjs.config';
 
 import { ICommandHandler } from '@/command/commandHandler.interface';
 import NoticesDto from '@/command/lostark/news/notices.dto';
-import dayjs from 'dayjs';
-import dayjsConfig from '@/utils/dayjs.config';
 
 @Injectable()
 export class NoticesHandler implements ICommandHandler {
