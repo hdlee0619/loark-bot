@@ -14,6 +14,7 @@ import { SetAdminRoleHandler } from '@/command/admin/set-admin-role/set-admin-ro
 import { ConfigService } from '@/config/config.service';
 import { CharactersHandler } from '@/command/lostark/character/characters.handler';
 import { NoticesHandler } from '@/command/lostark/news/notices.handler';
+import { EventsHandler } from '@/command/lostark/news/events.handler';
 
 const config = new ConfigService();
 
@@ -40,6 +41,7 @@ const config = new ConfigService();
     PingHandler,
     CharactersHandler,
     NoticesHandler,
+    EventsHandler,
   ],
   exports: [CommandService],
 })

@@ -13,6 +13,7 @@ import { HelpHandler } from '@/command/help/help.handler';
 import { PingHandler } from '@/command/ping/ping.handler';
 import { CharactersHandler } from '@/command/lostark/character/characters.handler';
 import { NoticesHandler } from '@/command/lostark/news/notices.handler';
+import { EventsHandler } from '@/command/lostark/news/events.handler';
 
 @Injectable()
 export class CommandService {
@@ -34,6 +35,7 @@ export class CommandService {
     private readonly pingHandler: PingHandler,
     private readonly charactersHandler: CharactersHandler,
     private readonly noticesHandler: NoticesHandler,
+    private readonly eventsHandler: EventsHandler,
   ) {
     this.commandHandlers = [
       setPrefixHandler,
@@ -45,6 +47,7 @@ export class CommandService {
       pingHandler,
       charactersHandler,
       noticesHandler,
+      eventsHandler,
     ];
   }
 
