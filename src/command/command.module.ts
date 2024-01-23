@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { HttpModule } from '@nestjs/axios';
 
 import { CommandService } from '@/command/command.service';
 import { ServerModule } from '@/server/server.module';
@@ -10,9 +11,25 @@ import { StatusHandler } from '@/command/status/status.handler';
 import { HelpHandler } from '@/command/help/help.handler';
 import { PingHandler } from '@/command/ping/ping.handler';
 import { SetAdminRoleHandler } from '@/command/admin/set-admin-role/set-admin-role.handler';
+import { ConfigService } from '@/config/config.service';
+import { CharactersHandler } from '@/command/lostark/character/characters.handler';
+import { NoticesHandler } from '@/command/lostark/news/notices.handler';
+import { EventsHandler } from '@/command/lostark/news/events.handler';
+
+const config = new ConfigService();
 
 @Module({
-  imports: [ServerModule, ConfigModule],
+  imports: [
+    HttpModule.register({
+      baseURL: config.lostArkUrl,
+      headers: {
+        Authorization: `Bearer ${config.lostArkApiKey}`,
+        Accept: 'application/json',
+      },
+    }),
+    ServerModule,
+    ConfigModule,
+  ],
   providers: [
     CommandService,
     SetPrefixHandler,
@@ -22,6 +39,9 @@ import { SetAdminRoleHandler } from '@/command/admin/set-admin-role/set-admin-ro
     StatusHandler,
     HelpHandler,
     PingHandler,
+    CharactersHandler,
+    NoticesHandler,
+    EventsHandler,
   ],
   exports: [CommandService],
 })

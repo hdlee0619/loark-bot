@@ -11,6 +11,9 @@ import { SetAdminRoleHandler } from '@/command/admin/set-admin-role/set-admin-ro
 import { StatusHandler } from '@/command/status/status.handler';
 import { HelpHandler } from '@/command/help/help.handler';
 import { PingHandler } from '@/command/ping/ping.handler';
+import { CharactersHandler } from '@/command/lostark/character/characters.handler';
+import { NoticesHandler } from '@/command/lostark/news/notices.handler';
+import { EventsHandler } from '@/command/lostark/news/events.handler';
 
 @Injectable()
 export class CommandService {
@@ -30,6 +33,9 @@ export class CommandService {
     // command for user
     private readonly helpHandler: HelpHandler,
     private readonly pingHandler: PingHandler,
+    private readonly charactersHandler: CharactersHandler,
+    private readonly noticesHandler: NoticesHandler,
+    private readonly eventsHandler: EventsHandler,
   ) {
     this.commandHandlers = [
       setPrefixHandler,
@@ -39,6 +45,9 @@ export class CommandService {
       statusHandler,
       helpHandler,
       pingHandler,
+      charactersHandler,
+      noticesHandler,
+      eventsHandler,
     ];
   }
 
